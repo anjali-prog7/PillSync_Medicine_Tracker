@@ -1,0 +1,146 @@
+/* ═══════════════════════════════════════════════
+   DASHBOARD LAYOUT — Enterprise Fixed Layout
+   ═══════════════════════════════════════════════ */
+
+/* ── Root Layout Container ── */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #F5F7FA;
+}
+
+/* ── Main Content Area (offset by sidebar) ── */
+.dashboard-content-wrapper {
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sidebar collapsed state */
+.sidebar.collapsed ~ .dashboard-content-wrapper,
+.sidebar-collapsed .dashboard-content-wrapper {
+  margin-left: 72px;
+  width: calc(100% - 72px);
+}
+
+/* ── Scrollable Dashboard Content ── */
+.dashboard-content {
+  margin-top: 72px;          /* navbar height */
+  padding: 24px 32px 40px 32px;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ── Dashboard Inner Container ── */
+.dashboard {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ── Card Grid ── */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 24px;
+  margin-bottom: 28px;
+}
+
+/* ── Chart Section ── */
+.chartSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+/* ── Bottom Grid ── */
+.bottomGrid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 22px;
+  margin-bottom: 28px;
+  align-items: stretch;
+}
+
+/* ── Responsive ── */
+
+/* Laptop */
+@media (max-width: 1400px) {
+  .dashboard-content {
+    padding: 24px 28px 36px 28px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .dashboard-content-wrapper {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+  }
+  .dashboard-content {
+    padding: 24px 24px 32px 24px;
+  }
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .chartSection {
+    grid-template-columns: 1fr;
+  }
+  .bottomGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .dashboard-content-wrapper {
+    margin-left: 72px;
+    width: calc(100% - 72px);
+  }
+  .dashboard-content {
+    padding: 20px 20px 28px 20px;
+  }
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .chartSection {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .bottomGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .dashboard-content-wrapper {
+    margin-left: 72px;
+    width: calc(100% - 72px);
+  }
+  .dashboard-content {
+    padding: 16px 16px 24px 16px;
+    margin-top: 64px;
+  }
+  .cardGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .chartSection {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .bottomGrid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}

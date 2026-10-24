@@ -1,0 +1,1082 @@
+/* ═══════════════════════════════════════════════
+   REFILL TRACKER — AUTOMATIC MEDICINE REFILL PAGE
+   ═══════════════════════════════════════════════ */
+
+/* ── Layout ── */
+.refill-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #F5F7FA;
+}
+
+.refill-content-wrapper {
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  min-height: 100vh;
+  background: #F5F7FA;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar.collapsed ~ .refill-content-wrapper {
+  margin-left: 72px;
+  width: calc(100% - 72px);
+}
+
+.refill-content {
+  margin-top: 72px;
+  padding: 28px 32px 48px;
+  flex: 1;
+}
+
+.refill-inner {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* ── Page Header ── */
+.refill-page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 26px;
+  animation: refill-fade-up 0.5s ease-out;
+}
+
+.refill-page-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 27px;
+  font-weight: 800;
+  color: #0F172A;
+  letter-spacing: -0.5px;
+}
+
+.refill-page-title-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #0F766E, #14B8A6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 10px 24px rgba(15, 118, 110, 0.35);
+  flex-shrink: 0;
+}
+
+.refill-page-subtitle {
+  margin: 6px 0 0 62px;
+  font-size: 15px;
+  color: #64748B;
+  line-height: 1.5;
+}
+
+.refill-header-badge {
+  padding: 8px 16px;
+  border-radius: 99px;
+  background: #ECFDF5;
+  color: #047857;
+  font-size: 12.5px;
+  font-weight: 700;
+  border: 1px solid #A7F3D0;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Loading State ── */
+.refill-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.refill-loading-spinner {
+  font-size: 48px;
+  color: #0F766E;
+  animation: refill-spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+.refill-loading p {
+  font-size: 16px;
+  color: #64748B;
+  font-weight: 600;
+}
+
+/* ── Error State ── */
+.refill-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  text-align: center;
+  background: #FFFFFF;
+  border: 1px solid #EEF2F6;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+.refill-error-icon {
+  font-size: 48px;
+  color: #DC2626;
+  margin-bottom: 20px;
+}
+
+.refill-error p {
+  font-size: 16px;
+  color: #64748B;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.refill-retry-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0F766E, #0D9488);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.refill-retry-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(13, 148, 136, 0.35);
+}
+
+/* ── Empty State ── */
+.refill-empty-state {
+  background: #fff;
+  border: 1.5px dashed #CBD5E1;
+  border-radius: 18px;
+  padding: 56px 24px;
+  text-align: center;
+  animation: refill-fade-up 0.4s ease-out;
+}
+
+.refill-empty-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #CCFBF1, #F0FDF4);
+  color: #0F766E;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  animation: refill-float 3s ease-in-out infinite;
+}
+
+.refill-empty-state h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 8px;
+}
+
+.refill-empty-state p {
+  font-size: 13.5px;
+  color: #64748B;
+  max-width: 340px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}
+
+.refill-add-medicine-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0F766E, #0D9488);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.refill-add-medicine-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(13, 148, 136, 0.35);
+}
+
+/* ── Status Summary Cards ── */
+.refill-status-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+  animation: refill-fade-up 0.5s ease-out;
+}
+
+.refill-status-card {
+  background: #FFFFFF;
+  border: 1px solid #EEF2F6;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.refill-status-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.09);
+}
+
+.refill-status-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.refill-status-card-content h3 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.2;
+}
+
+.refill-status-card-content p {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+  margin-top: 2px;
+}
+
+.refill-status-card-indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+/* Safe Status Card */
+.refill-status-card.refill-status-safe {
+  border-color: #A7F3D0;
+}
+
+.refill-status-card.refill-status-safe .refill-status-card-icon {
+  background: #DCFCE7;
+  color: #16A34A;
+}
+
+.refill-status-card.refill-status-safe .refill-status-card-content h3 {
+  color: #16A34A;
+}
+
+.refill-status-card.refill-status-safe .refill-status-card-indicator {
+  background: #16A34A;
+}
+
+/* Soon Status Card */
+.refill-status-card.refill-status-soon {
+  border-color: #FDE68A;
+}
+
+.refill-status-card.refill-status-soon .refill-status-card-icon {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.refill-status-card.refill-status-soon .refill-status-card-content h3 {
+  color: #D97706;
+}
+
+.refill-status-card.refill-status-soon .refill-status-card-indicator {
+  background: #D97706;
+}
+
+/* Urgent Status Card */
+.refill-status-card.refill-status-urgent {
+  border-color: #FECACA;
+}
+
+.refill-status-card.refill-status-urgent .refill-status-card-icon {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.refill-status-card.refill-status-urgent .refill-status-card-content h3 {
+  color: #DC2626;
+}
+
+.refill-status-card.refill-status-urgent .refill-status-card-indicator {
+  background: #DC2626;
+}
+
+/* ── Medicine Sections ── */
+.refill-section {
+  margin-bottom: 32px;
+  animation: refill-fade-up 0.5s ease-out;
+}
+
+.refill-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 14px 18px;
+  background: #FFFFFF;
+  border: 1px solid #EEF2F6;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.refill-section-header h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+}
+
+.refill-section-header svg {
+  font-size: 18px;
+}
+
+.refill-section-badge {
+  margin-left: auto;
+  padding: 6px 12px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.refill-section-badge.urgent {
+  background: #FEE2E2;
+  color: #B91C1C;
+}
+
+.refill-section-badge.soon {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.refill-section-badge.safe {
+  background: #DCFCE7;
+  color: #166534;
+}
+
+.refill-section-safe {
+  border-left: 4px solid #16A34A;
+}
+
+.refill-section-safe svg {
+  color: #16A34A;
+}
+
+.refill-section-soon {
+  border-left: 4px solid #D97706;
+}
+
+.refill-section-soon svg {
+  color: #D97706;
+}
+
+.refill-section-urgent {
+  border-left: 4px solid #DC2626;
+}
+
+.refill-section-urgent svg {
+  color: #DC2626;
+}
+
+/* ── Medicine Cards Grid ── */
+.refill-medicine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.refill-medicine-card {
+  background: #FFFFFF;
+  border: 2px solid #A7F3D0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(15, 118, 110, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.refill-medicine-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(15, 118, 110, 0.14);
+  border-color: #14B8A6;
+}
+
+/* Urgent Card — green border, only badge stays red */
+.refill-medicine-card.refill-status-urgent {
+  border-color: #A7F3D0;
+  border-top: 3px solid #0F766E;
+}
+
+/* Soon Card */
+.refill-medicine-card.refill-status-soon {
+  border-color: #A7F3D0;
+  border-top: 3px solid #0F766E;
+}
+
+/* Safe Card */
+.refill-medicine-card.refill-status-safe {
+  border-color: #A7F3D0;
+  border-top: 3px solid #16A34A;
+}
+
+/* ── Medicine Card Header ── */
+.refill-medicine-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.refill-medicine-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #CCFBF1, #F0FDF4);
+  color: #0F766E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.refill-medicine-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.refill-medicine-info h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.refill-medicine-type {
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 600;
+}
+
+.refill-medicine-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.refill-medicine-status-badge.refill-status-urgent {
+  background: #FEE2E2;
+  color: #B91C1C;
+}
+
+.refill-medicine-status-badge.refill-status-soon {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.refill-medicine-status-badge.refill-status-safe {
+  background: #DCFCE7;
+  color: #166534;
+}
+
+/* ── Medicine Card Body ── */
+.refill-medicine-card-body {
+  padding: 16px 18px;
+}
+
+.refill-medicine-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.refill-medicine-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.refill-stat-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94A3B8;
+}
+
+.refill-stat-value {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.refill-stat-unit {
+  font-size: 12px;
+  font-weight: 600;
+  color: #94A3B8;
+}
+
+.refill-date {
+  font-size: 13px;
+  color: #334155;
+}
+
+.refill-medicine-email-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #047857;
+}
+
+.refill-medicine-email-alert svg {
+  color: #0F766E;
+  font-size: 14px;
+}
+
+/* ── Medicine Card Scroll Container ── */
+.refill-medicine-scroll-container {
+  max-height: 460px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 4px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.refill-medicine-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.refill-medicine-scroll-container::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 3px;
+}
+
+.refill-medicine-scroll-container::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+
+.refill-medicine-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* When 4 or fewer cards, no scroll needed */
+.refill-medicine-grid.refill-no-scroll {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+/* ── Manual Refill Section ── */
+.refill-manual-section {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid #E2E8F0;
+}
+
+.refill-manual-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.refill-manual-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.refill-manual-section-title-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0F766E, #14B8A6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 6px 16px rgba(15, 118, 110, 0.25);
+}
+
+.refill-manual-section-subtitle {
+  font-size: 14px;
+  color: #64748B;
+  margin: 0 0 0 52px;
+}
+
+.refill-manual-refill-card {
+  background: #FFFFFF;
+  border: 2px solid #A7F3D0;
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 16px rgba(15, 118, 110, 0.06);
+}
+
+.refill-manual-refill-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.refill-manual-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 220px;
+  flex: 1;
+}
+
+.refill-manual-field label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+  letter-spacing: 0.2px;
+}
+
+.refill-manual-field select,
+.refill-manual-field input {
+  padding: 12px 16px;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0F172A;
+  background: #FAFBFC;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+  width: 100%;
+}
+
+.refill-manual-field select:focus,
+.refill-manual-field input:focus {
+  outline: none;
+  border-color: #0F766E;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+}
+
+.refill-manual-field .refill-quantity-suffix {
+  font-size: 12px;
+  color: #94A3B8;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.refill-manual-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0F766E, #0D9488);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 46px;
+}
+
+.refill-manual-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.35);
+}
+
+.refill-manual-submit-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.refill-manual-submit-btn svg {
+  font-size: 15px;
+}
+
+/* ── Success Message ── */
+.refill-success-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 12px 18px;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #047857;
+  animation: refill-fade-up 0.35s ease-out;
+}
+
+.refill-success-message svg {
+  color: #16A34A;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* ── Keyframes ── */
+@keyframes refill-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes refill-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes refill-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1280px) {
+  .refill-status-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .refill-page-title {
+    font-size: 24px;
+  }
+
+  .refill-status-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .refill-content {
+    padding: 20px 16px 40px;
+  }
+
+  .refill-status-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .refill-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .refill-medicine-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .refill-manual-refill-card {
+    padding: 20px 16px;
+  }
+
+  .refill-manual-refill-form {
+    flex-direction: column;
+  }
+
+  .refill-manual-refill-form .refill-manual-field {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .refill-status-cards {
+    gap: 12px;
+  }
+
+  .refill-status-card {
+    padding: 16px;
+  }
+
+  .refill-status-card-content h3 {
+    font-size: 24px;
+  }
+}
+
+/* ── Dark Mode ── */
+.dash-dark-mode .refill-layout,
+.dash-dark-mode .refill-content-wrapper {
+  background: #0B1120;
+}
+
+.dash-dark-mode .refill-page-title,
+.dash-dark-mode .refill-section-header h2,
+.dash-dark-mode .refill-medicine-info h3,
+.dash-dark-mode .refill-stat-value,
+.dash-dark-mode .refill-empty-state h3 {
+  color: #E2E8F0;
+}
+
+.dash-dark-mode .refill-page-subtitle,
+.dash-dark-mode .refill-stat-label,
+.dash-dark-mode .refill-medicine-type,
+.dash-dark-mode .refill-empty-state p,
+.dash-dark-mode .refill-loading p,
+.dash-dark-mode .refill-error p {
+  color: #94A3B8;
+}
+
+.dash-dark-mode .refill-status-card,
+.dash-dark-mode .refill-section-header,
+.dash-dark-mode .refill-medicine-card,
+.dash-dark-mode .refill-empty-state,
+.dash-dark-mode .refill-error {
+  background: #101A2E;
+  border-color: #1E293B;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.dash-dark-mode .refill-status-card.refill-status-safe {
+  border-color: rgba(74, 222, 128, 0.4);
+}
+
+.dash-dark-mode .refill-status-card.refill-status-safe .refill-status-card-icon {
+  background: #064E3B;
+  color: #6EE7B7;
+}
+
+.dash-dark-mode .refill-status-card.refill-status-safe .refill-status-card-content h3 {
+  color: #6EE7B7;
+}
+
+.dash-dark-mode .refill-status-card.refill-status-soon {
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+.dash-dark-mode .refill-status-card.refill-status-soon .refill-status-card-icon {
+  background: #78350F;
+  color: #FCD34D;
+}
+
+.dash-dark-mode .refill-status-card.refill-status-soon .refill-status-card-content h3 {
+  color: #FCD34D;
+}
+
+.dash-dark-mode .refill-status-card.refill-status-urgent {
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+.dash-dark-mode .refill-status-card.refill-status-urgent .refill-status-card-icon {
+  background: #7F1D1D;
+  color: #FCA5A5;
+}
+
+.dash-dark-mode .refill-status-card.refill-status-urgent .refill-status-card-content h3 {
+  color: #FCA5A5;
+}
+
+.dash-dark-mode .refill-medicine-card.refill-status-urgent,
+.dash-dark-mode .refill-medicine-card.refill-status-soon,
+.dash-dark-mode .refill-medicine-card.refill-status-safe {
+  border-color: rgba(74, 222, 128, 0.4);
+}
+
+.dash-dark-mode .refill-medicine-card.refill-status-urgent {
+  border-top-color: #5EEAD4;
+}
+
+.dash-dark-mode .refill-medicine-card.refill-status-soon {
+  border-top-color: #6EE7B7;
+}
+
+.dash-dark-mode .refill-medicine-card.refill-status-safe {
+  border-top-color: #6EE7B7;
+}
+
+.dash-dark-mode .refill-medicine-status-badge.refill-status-urgent {
+  background: #7F1D1D;
+  color: #FCA5A5;
+}
+
+.dash-dark-mode .refill-medicine-status-badge.refill-status-soon {
+  background: #78350F;
+  color: #FCD34D;
+}
+
+.dash-dark-mode .refill-medicine-status-badge.refill-status-safe {
+  background: #064E3B;
+  color: #6EE7B7;
+}
+
+.dash-dark-mode .refill-section-badge.urgent {
+  background: #7F1D1D;
+  color: #FCA5A5;
+}
+
+.dash-dark-mode .refill-section-badge.soon {
+  background: #78350F;
+  color: #FCD34D;
+}
+
+.dash-dark-mode .refill-section-badge.safe {
+  background: #064E3B;
+  color: #6EE7B7;
+}
+
+.dash-dark-mode .refill-medicine-email-alert {
+  background: rgba(6, 78, 59, 0.35);
+  border-color: rgba(74, 222, 128, 0.4);
+  color: #6EE7B7;
+}
+
+.dash-dark-mode .refill-medicine-email-alert svg {
+  color: #5EEAD4;
+}
+
+.dash-dark-mode .refill-empty-state {
+  border-color: #334155;
+}
+
+.dash-dark-mode .refill-header-badge {
+  background: #064E3B;
+  color: #6EE7B7;
+  border-color: #065F46;
+}
+
+.dash-dark-mode .refill-medicine-icon {
+  background: #134E4A;
+  color: #5EEAD4;
+}
+
+.dash-dark-mode .refill-section-safe {
+  border-left-color: #6EE7B7;
+}
+
+.dash-dark-mode .refill-section-safe svg {
+  color: #6EE7B7;
+}
+
+.dash-dark-mode .refill-section-soon {
+  border-left-color: #FCD34D;
+}
+
+.dash-dark-mode .refill-section-soon svg {
+  color: #FCD34D;
+}
+
+.dash-dark-mode .refill-section-urgent {
+  border-left-color: #FCA5A5;
+}
+
+.dash-dark-mode .refill-section-urgent svg {
+  color: #FCA5A5;
+}
+
+.dash-dark-mode .refill-manual-section {
+  border-top-color: #1E293B;
+}
+
+.dash-dark-mode .refill-manual-section-title {
+  color: #E2E8F0;
+}
+
+.dash-dark-mode .refill-manual-section-subtitle {
+  color: #94A3B8;
+}
+
+.dash-dark-mode .refill-manual-refill-card {
+  background: #101A2E;
+  border-color: rgba(74, 222, 128, 0.4);
+}
+
+.dash-dark-mode .refill-manual-field label {
+  color: #CBD5E1;
+}
+
+.dash-dark-mode .refill-manual-field select,
+.dash-dark-mode .refill-manual-field input {
+  background: #0B1120;
+  border-color: #334155;
+  color: #E2E8F0;
+}
+
+.dash-dark-mode .refill-manual-field select:focus,
+.dash-dark-mode .refill-manual-field input:focus {
+  border-color: #14B8A6;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+}
+
+.dash-dark-mode .refill-medicine-scroll-container::-webkit-scrollbar-track {
+  background: #1E293B;
+}
+
+.dash-dark-mode .refill-medicine-scroll-container::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.dash-dark-mode .refill-success-message {
+  background: rgba(6, 78, 59, 0.35);
+  border-color: rgba(74, 222, 128, 0.4);
+  color: #6EE7B7;
+}
+
+.dash-dark-mode .refill-success-message svg {
+  color: #6EE7B7;
+}

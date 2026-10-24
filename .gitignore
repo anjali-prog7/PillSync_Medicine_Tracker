@@ -1,0 +1,94 @@
+# =========================
+# Python / Django
+# =========================
+
+# Virtual Environment
+backend/venv/
+backend/Lib/
+backend/Scripts/
+backend/Include/
+backend/pyvenv.cfg
+
+# Python Cache
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment Variables
+backend/.env
+.env
+
+# Database
+backend/db.sqlite3
+
+# Logs
+*.log
+logs/
+backend/logs/
+server.log
+
+# Python Build
+*.egg-info/
+build/
+dist/
+staticfiles/
+
+# =========================
+# Node / React
+# =========================
+
+frontend/node_modules/
+node_modules/
+
+frontend/dist/
+dist/
+dist-ssr/
+
+# Local Environment
+*.local
+
+# =========================
+# VS Code / IDE
+# =========================
+
+.vscode/
+.idea/
+
+# =========================
+# Operating System
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+# Temporary Files
+# =========================
+
+nul
+_ul
+test.txt
+screenshots/
+
+# =========================
+# Celery
+# =========================
+
+celerybeat-schedule
+celerybeat.pid
+
+# =========================
+# Test Files
+# =========================
+
+backend/test_*.py
+frontend/src/test-*
+
+# =========================
+# Misc
+# =========================
+
+*.tmp
+*.bak
+*.swp
+.freebuff/

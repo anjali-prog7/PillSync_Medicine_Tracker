@@ -1,0 +1,2653 @@
+/* ==========================================================
+   Prescription OCR - Production CSS
+   Part 1 : Layout | Header | Cards | Upload Area
+   ========================================================== */
+
+:root{
+  --primary:#0F766E;
+  --primary-dark:#0B5D57;
+  --secondary:#14B8A6;
+  --success:#16A34A;
+  --danger:#DC2626;
+  --warning:#F59E0B;
+  --info:#2563EB;
+
+  --bg:#F8FAFC;
+  --card:#FFFFFF;
+  --border:#125752;
+
+  --text:#060b15;
+  --text-light:#64748B;
+
+  --shadow-sm:0 2px 10px rgba(0,0,0,.05);
+  --shadow-md:0 8px 25px rgba(0,0,0,.08);
+  --shadow-lg:0 20px 45px rgba(0,0,0,.12);
+
+  --radius:18px;
+  --transition:.3s ease;
+}
+
+/* ===========================
+   Layout
+=========================== */
+
+*{
+  box-sizing:border-box;
+}
+
+.ocr-layout{
+  display:flex;
+  min-height:100vh;
+  background:var(--bg);
+}
+
+.ocr-content-wrapper{
+  flex:1;
+  margin-left:280px;
+  transition:.3s;
+}
+
+.sidebar.collapsed~.ocr-content-wrapper{
+  margin-left:72px;
+}
+
+.ocr-content{
+  padding:95px 35px 40px;
+  max-width:1500px;
+  margin:auto;
+}
+
+/* ===========================
+   Header
+=========================== */
+
+.ocr-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:30px;
+  margin-bottom:35px;
+}
+
+.ocr-header-left{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.ocr-header-icon{
+  width:65px;
+  height:65px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#e5e2e0;
+  font-size:30px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  box-shadow:0 15px 30px rgba(15,118,110,.25);
+}
+
+.ocr-header-left h1{
+  margin:0;
+  font-size:30px;
+  font-weight:700;
+  color:var(--text);
+  
+}
+
+.ocr-header-left p{
+  margin-top:5px;
+  color:var(--text-light);
+  line-height:1.6;
+}
+
+.ocr-header-right{
+  display:flex;
+  gap:15px;
+}
+
+.ocr-stat{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:white;
+  padding:14px 20px;
+  border-radius:14px;
+  box-shadow:var(--shadow-sm);
+  border:1px solid var(--border);
+  font-weight:600;
+  color:#4f5454;
+  
+}
+
+.ocr-stat svg{
+    font-size:18px;
+   opacity:1;
+}
+
+.ocr-stat svg{
+  color:#0F766E;
+    font-size:18px;
+ 
+}
+
+
+/* ===========================
+   Grid
+=========================== */
+
+.ocr-cards-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:28px;
+}
+
+.ocr-card{
+  background:white;
+  border-radius:22px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+  transition:.35s;
+}
+
+.ocr-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-md);
+}
+
+.ocr-card.full-width{
+  grid-column:1/-1;
+}
+
+.fade-in{
+  animation:fadeIn .5s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* ===========================
+   Card Header
+=========================== */
+
+.ocr-card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 26px;
+  border-bottom:1px solid #edf2f7;
+}
+
+.ocr-card-header-left{
+  display:flex;
+  gap:16px;
+  align-items:center;
+}
+
+.ocr-card-header h2{
+  margin:0;
+  font-size:20px;
+  color:var(--text);
+}
+
+.ocr-card-header p{
+  margin-top:4px;
+  color:var(--text-light);
+  font-size:13px;
+}
+
+.ocr-card-body{
+  padding:24px;
+}
+
+/* ===========================
+   Icons
+=========================== */
+
+.ocr-card-icon{
+  width:50px;
+  height:50px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:14px;
+  font-size:22px;
+}
+
+.pill-icon{
+background:#ECFDF5;
+color:#10B981;
+}
+
+.prescription-icon{
+background:#EEF2FF;
+color:#4F46E5;
+}
+
+.form-icon{
+background:#FFF7ED;
+color:#EA580C;
+}
+
+.result-icon{
+background:#ECFEFF;
+color:#0891B2;
+}
+
+.history-icon{
+background:#EFF6FF;
+color:#2563EB;
+}
+
+/* ===========================
+   Upload Area
+=========================== */
+
+.drop-zone{
+  position:relative;
+  border:2px dashed #94A3B8;
+  border-radius:20px;
+  padding:35px;
+  min-height:260px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:.3s;
+  cursor:pointer;
+  overflow:hidden;
+}
+
+.drop-zone:hover{
+  border-color:var(--primary);
+  background:#F0FDFA;
+}
+
+.drop-zone.has-preview{
+  border-style:solid;
+  padding:0;
+}
+
+.drop-zone-empty{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+}
+
+.drop-zone-icon{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:#ECFEFF;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  color:var(--primary);
+  transition:.3s;
+}
+
+.drop-zone:hover .drop-zone-icon{
+  transform:scale(1.08);
+}
+
+.drop-zone-empty h3{
+  margin:0;
+  font-size:18px;
+  color:#0F172A;
+  font-weight:700;
+}
+
+.drop-zone-empty p{
+  color:#334155;
+  font-size:14px;
+  font-weight:500;
+  margin:0;
+}
+.drop-zone-formats{
+  margin-top:6px;
+  background:#E2E8F0;
+  color:#334155;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+}
+
+/* ===========================
+   Preview
+=========================== */
+
+.preview-container{
+  width:100%;
+  position:relative;
+}
+
+.preview-image{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+}
+
+.preview-overlay{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:18px;
+  background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
+}
+
+.preview-file-name{
+  color:white;
+  display:block;
+  margin-bottom:12px;
+  font-weight:600;
+}
+
+.preview-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.preview-btn{
+  border:none;
+  cursor:pointer;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  padding:10px 18px;
+  border-radius:12px;
+  font-weight:600;
+  background:white;
+  transition:.3s;
+}
+
+.preview-btn:hover{
+  transform:translateY(-2px);
+}
+
+.preview-btn.danger{
+  background:#FEE2E2;
+  color:#DC2626;
+}
+
+.pdf-preview{
+  min-height:260px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+.pdf-icon-large{
+  font-size:70px;
+  color:#EF4444;
+}
+
+.pdf-name{
+  margin-top:15px;
+  font-weight:600;
+}
+
+/* ===========================
+   Progress Bar
+=========================== */
+
+.upload-progress-bar{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-top:20px;
+}
+
+.progress-track{
+  flex:1;
+  height:8px;
+  background:#E2E8F0;
+  border-radius:30px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  border-radius:30px;
+  transition:.4s;
+}
+
+.progress-text{
+  font-weight:700;
+  color:var(--primary);
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+.ocr-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:12px 24px;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  transition:.3s;
+  font-weight:600;
+}
+
+.ocr-btn.primary{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+}
+
+.ocr-btn.primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 20px rgba(15,118,110,.25);
+}
+
+.ocr-btn.secondary{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+}
+
+.ocr-btn.secondary:hover{
+  box-shadow:0 10px 20px rgba(15,118,110,.25);
+  
+}
+
+.spin{
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+from{
+transform:rotate(0deg);
+}
+to{
+transform:rotate(360deg);
+}
+}
+
+/* ==========================================================
+   Prescription OCR - Production CSS
+   Part 2 : OCR Result | Loading | Skeleton | Badges
+   ========================================================== */
+
+/* ===========================
+   OCR Loading
+=========================== */
+
+.ocr-loading-state{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:60px 30px;
+    text-align:center;
+}
+
+.ocr-loading-spinner{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:25px;
+    background:linear-gradient(135deg,#0F766E,#14B8A6);
+    color:#fff;
+    font-size:34px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{
+transform:scale(1);
+box-shadow:0 0 0 0 rgba(15,118,110,.5);
+}
+70%{
+transform:scale(1.08);
+box-shadow:0 0 0 18px rgba(15,118,110,0);
+}
+100%{
+transform:scale(1);
+box-shadow:0 0 0 0 rgba(15,118,110,0);
+}
+}
+
+.ocr-loading-state h3{
+margin-top:0;
+margin-bottom:10px;
+font-size:22px;
+color:#0F172A;
+}
+
+.ocr-loading-state p{
+max-width:500px;
+color:#64748B;
+line-height:1.6;
+margin-bottom:25px;
+}
+
+/* ===========================
+   Skeleton Loader
+=========================== */
+
+.loading-skeleton{
+width:100%;
+margin-top:35px;
+display:flex;
+flex-direction:column;
+gap:16px;
+}
+
+.skeleton-line{
+height:16px;
+border-radius:30px;
+background:linear-gradient(
+90deg,
+#E2E8F0 25%,
+#F8FAFC 50%,
+#E2E8F0 75%
+);
+background-size:400% 100%;
+animation:skeletonLoading 1.5s infinite;
+}
+
+@keyframes skeletonLoading{
+0%{
+background-position:100% 0;
+}
+100%{
+background-position:-100% 0;
+}
+}
+
+.w-40{
+width:40%;
+}
+
+.w-50{
+width:50%;
+}
+
+.w-60{
+width:60%;
+}
+
+.w-70{
+width:70%;
+}
+
+.w-80{
+width:80%;
+}
+
+/* ===========================
+   OCR Result
+=========================== */
+
+.ocr-result-container{
+display:flex;
+flex-direction:column;
+gap:25px;
+animation:fadeIn .4s ease;
+}
+
+.ocr-result-grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:18px;
+}
+
+.result-item{
+background:#F8FAFC;
+border:1px solid #E2E8F0;
+border-radius:16px;
+padding:18px;
+display:flex;
+flex-direction:column;
+gap:10px;
+transition:.3s;
+}
+
+.result-item:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 20px rgba(0,0,0,.06);
+}
+
+.result-label{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:13px;
+font-weight:600;
+color:#64748B;
+}
+
+.result-label svg{
+color:#0F766E;
+font-size:15px;
+}
+
+.result-value{
+font-size:17px;
+font-weight:700;
+color:#0F172A;
+word-break:break-word;
+}
+
+/* ===========================
+   Extra Section
+=========================== */
+
+.result-medicines-list{
+    margin-top:18px;
+    padding:14px 16px;
+    background:#F8FAFC;
+    border:1px solid #E2E8F0;
+    border-radius:14px;
+}
+
+.result-medicines-list strong{
+    display:block;
+    font-size:14px;
+    color:#334155;
+    margin-bottom:8px;
+}
+
+.result-medicines-list ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.result-medicines-list li{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:4px;
+    font-size:14px;
+    color:#475569;
+}
+
+.medicine-list-name{
+    font-weight:600;
+    color:#0F766E;
+}
+
+.medicine-list-dosage{
+    color:#334155;
+}
+
+.medicine-list-freq{
+    color:#64748B;
+}
+
+.result-extra{
+background:#F8FAFC;
+padding:20px;
+border-radius:18px;
+border:1px solid #E2E8F0;
+}
+
+.result-prescription-details strong{
+display:block;
+margin-bottom:10px;
+font-size:15px;
+color:#0F172A;
+}
+
+.result-prescription-details p{
+margin:0;
+line-height:1.7;
+color:#475569;
+}
+
+.prescription-summary{
+margin:0;
+white-space:pre-line;
+line-height:1.8;
+color:#475569;
+font-size:14px;
+max-height:340px;
+overflow-y:auto;
+padding:14px 16px;
+background:#FFFFFF;
+border:1px solid #E2E8F0;
+border-radius:12px;
+}
+
+.prescription-summary:empty::before{
+content:"No extracted details.";
+color:#94A3B8;
+}
+
+/* ===========================
+   Confidence
+=========================== */
+
+.ocr-confidence-display{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:10px 18px;
+background:#ECFDF5;
+border-radius:15px;
+}
+
+.confidence-score{
+font-size:24px;
+font-weight:700;
+color:#059669;
+}
+
+.confidence-label{
+font-size:12px;
+color:#64748B;
+}
+
+.result-status-row{
+display:flex;
+justify-content:space-between;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.result-status{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:15px;
+}
+
+/* ===========================
+   OCR Badges
+=========================== */
+
+.ocr-badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:8px 15px;
+border-radius:999px;
+font-size:13px;
+font-weight:700;
+}
+
+.badge-success{
+background:#DCFCE7;
+color:#15803D;
+}
+
+.badge-warning{
+background:#FEF3C7;
+color:#B45309;
+}
+
+.badge-danger{
+background:#FEE2E2;
+color:#B91C1C;
+}
+
+/* ===========================
+   Warning Banner
+=========================== */
+
+.ocr-warning-banner{
+display:flex;
+align-items:center;
+gap:12px;
+padding:16px 18px;
+background:#FEF3C7;
+border-left:5px solid #F59E0B;
+border-radius:14px;
+font-weight:600;
+color:#92400E;
+}
+
+/* ===========================
+   Error State
+=========================== */
+
+.ocr-error-state{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:60px 30px;
+text-align:center;
+}
+
+.error-icon{
+width:90px;
+height:90px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:36px;
+background:#FEE2E2;
+color:#DC2626;
+margin-bottom:20px;
+}
+
+.ocr-error-state h3{
+margin-bottom:12px;
+font-size:24px;
+color:#991B1B;
+}
+
+.ocr-error-state p{
+max-width:550px;
+line-height:1.7;
+color:#64748B;
+}
+
+.error-hint{
+margin-top:18px;
+font-size:14px;
+font-style:italic;
+}
+
+/* ===========================
+   Empty State
+=========================== */
+
+.ocr-empty-state{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:70px 30px;
+text-align:center;
+}
+
+.empty-icon{
+width:95px;
+height:95px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:42px;
+background:#ECFEFF;
+color:#0891B2;
+margin-bottom:20px;
+}
+
+.ocr-empty-state h3{
+font-size:24px;
+margin-bottom:12px;
+}
+
+.ocr-empty-state p{
+max-width:520px;
+line-height:1.7;
+color:#64748B;
+}
+
+.empty-tips{
+margin-top:30px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:18px;
+}
+
+.tip-item{
+display:flex;
+align-items:center;
+gap:8px;
+padding:12px 18px;
+background:#F8FAFC;
+border-radius:12px;
+font-size:14px;
+font-weight:600;
+border:1px solid #E2E8F0;
+}
+
+.tip-icon{
+color:#16A34A;
+}
+
+/* ===========================
+   Result Buttons
+=========================== */
+
+.result-actions{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+margin-top:15px;
+}
+
+.result-actions .ocr-btn{
+min-width:180px;
+justify-content:center;
+}
+
+/* ===========================
+   Full Width Progress
+=========================== */
+
+.upload-progress-bar.full{
+width:100%;
+margin-top:25px;
+}
+
+/* ==========================================================
+   Prescription OCR - Production CSS
+   Part 3 : Manual Form | Upload History | Pagination
+   ========================================================== */
+
+/* ===========================
+   Manual Form
+=========================== */
+
+.manual-form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:22px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.form-group.full-width{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    font-weight:600;
+    color:#334155;
+}
+
+.form-group label svg{
+    color:#0F766E;
+}
+
+.required{
+    color:#DC2626;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+    padding:13px 16px;
+    border:1px solid #CBD5E1;
+    border-radius:14px;
+    background:#fff;
+    font-size:14px;
+    transition:.25s;
+    outline:none;
+
+}
+
+.form-group textarea{
+
+    resize:vertical;
+    min-height:120px;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+
+    border-color:#0F766E;
+    box-shadow:0 0 0 4px rgba(15,118,110,.12);
+
+}
+
+.form-actions{
+
+    display:flex;
+    gap:15px;
+    margin-top:28px;
+    flex-wrap:wrap;
+
+}
+
+/* ===========================
+   History Controls
+=========================== */
+
+.history-controls{
+
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:28px;
+    flex-wrap:wrap;
+
+}
+
+.history-search{
+
+    flex:1;
+    min-width:260px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 18px;
+    background:#fff;
+    border:1px solid #CBD5E1;
+    border-radius:15px;
+
+}
+
+.history-search svg{
+
+    color:#0F766E;
+    font-size:18px;
+
+}
+
+.history-search input{
+
+    border:none;
+    outline:none;
+    width:100%;
+    background:transparent;
+    font-size:14px;
+
+}
+
+.history-filter{
+
+    min-width:190px;
+
+}
+
+.history-filter select{
+
+    width:100%;
+    padding:12px 15px;
+    border-radius:14px;
+    border:1px solid #CBD5E1;
+    outline:none;
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+.history-filter select:focus{
+
+    border-color:#0F766E;
+
+}
+
+/* ===========================
+   Table
+=========================== */
+
+.history-table-wrapper{
+
+    overflow-x:auto;
+    border-radius:18px;
+    border:1px solid #E2E8F0;
+
+}
+
+.history-table{
+
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+
+}
+
+.history-table thead{
+
+    background:#0F766E;
+    color:white;
+
+}
+
+.history-table th{
+
+    padding:18px;
+    text-align:left;
+    font-size:14px;
+    font-weight:600;
+
+}
+
+.history-table td{
+
+    padding:18px;
+    border-bottom:1px solid #CBD5E1;
+    vertical-align:middle;
+
+}
+
+.history-row{
+
+    transition:.25s;
+
+}
+
+.history-row:hover{
+
+    background:#F8FAFC;
+
+}
+
+/* ===========================
+   Preview Icon
+=========================== */
+
+.history-file-type{
+
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:20px;
+
+}
+
+.history-file-type.image{
+
+    background:#ECFEFF;
+    color:#0891B2;
+
+}
+
+.history-file-type.pdf{
+
+    background:#FEE2E2;
+    color:#DC2626;
+
+}
+
+/* ===========================
+   Filename
+=========================== */
+
+.history-filename{
+
+    max-width:240px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-weight:600;
+
+}
+
+.history-date{
+
+    color:#64748B;
+    font-size:13px;
+
+}
+
+/* ===========================
+   Status
+=========================== */
+
+.history-status{
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:7px 14px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+
+}
+
+.history-status.success{
+
+    background:#DCFCE7;
+    color:#15803D;
+
+}
+
+.history-status.warning{
+
+    background:#FEF3C7;
+    color:#B45309;
+
+}
+
+/* ===========================
+   Confidence
+=========================== */
+
+.history-confidence{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+}
+
+.confidence-bar-wrapper{
+
+    width:120px;
+    height:8px;
+    background:#E2E8F0;
+    border-radius:999px;
+    overflow:hidden;
+
+}
+
+.confidence-bar-fill{
+
+    height:100%;
+    border-radius:999px;
+    transition:.35s;
+
+}
+
+/* ===========================
+   Action Buttons
+=========================== */
+
+.history-actions{
+
+    display:flex;
+    gap:10px;
+
+}
+
+.history-action-btn{
+
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.25s;
+    color:white;
+
+}
+
+.history-action-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.history-action-btn.view{
+
+    background:#2563EB;
+
+}
+
+.history-action-btn.download{
+
+    background:#16A34A;
+
+}
+
+.history-action-btn.delete{
+
+    background:#DC2626;
+
+}
+
+/* ===========================
+   Empty History
+=========================== */
+
+.history-empty{
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:70px 30px;
+    text-align:center;
+    color:#06090e;
+
+}
+
+.history-empty h3{
+
+    margin-top:20px;
+    margin-bottom:10px;
+    font-size:24px;
+
+}
+
+.history-empty p{
+
+    color:#334155;
+
+}
+
+/* ===========================
+   Pagination
+=========================== */
+
+.history-pagination{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:25px;
+    flex-wrap:wrap;
+    gap:20px;
+
+}
+
+.pagination-info{
+
+    color:#64748B;
+    font-size:14px;
+
+}
+
+.pagination-buttons{
+
+    display:flex;
+    gap:8px;
+    align-items:center;
+    flex-wrap:wrap;
+
+}
+
+.page-btn{
+
+    min-width:42px;
+    height:42px;
+    border:none;
+    background:#F1F5F9;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.25s;
+    font-weight:600;
+
+}
+
+.page-btn:hover{
+
+    background:#0F766E;
+    color:white;
+
+}
+
+.page-btn.active{
+
+    background:#0F766E;
+    color:white;
+
+}
+
+.page-btn:disabled{
+
+    opacity:.45;
+    cursor:not-allowed;
+
+}
+
+.page-ellipsis{
+
+    padding:0 5px;
+    color:#94A3B8;
+}
+
+/* ===========================
+   Smooth Animation
+=========================== */
+
+.history-row,
+.history-action-btn,
+.page-btn,
+.history-search,
+.history-filter select{
+
+    transition:all .25s ease;
+
+}
+
+/* ==========================================================
+   Prescription OCR - Production CSS
+   Part 3.5 : AI Result View | Medicine Cards | Confidence | JSON
+   ========================================================== */
+
+/* ===========================
+   Result Summary Row
+=========================== */
+
+.result-summary-row{
+  display:flex;
+  gap:28px;
+  align-items:stretch;
+  flex-wrap:wrap;
+}
+
+.result-image-preview{
+  position:relative;
+  flex:0 0 300px;
+  max-width:100%;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+}
+
+.result-image-preview img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  display:block;
+}
+
+.result-engine-badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:rgba(15,118,110,.92);
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.4px;
+  padding:6px 12px;
+  border-radius:999px;
+  backdrop-filter:blur(4px);
+}
+
+.result-overview{
+  flex:1;
+  min-width:260px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:14px;
+  padding:10px 0;
+}
+
+.result-overview h3{
+  margin:0;
+  font-size:26px;
+  color:var(--text);
+  word-break:break-word;
+}
+
+.result-overview-disease{
+  margin:0;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--text-light);
+  font-weight:600;
+}
+
+/* ===========================
+   Confidence Meter
+=========================== */
+
+.confidence-meter{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+}
+
+.confidence-meter-gauge{
+  width:86px;
+  height:86px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.4s;
+}
+
+.confidence-meter-inner{
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+}
+
+.confidence-meter-value{
+  font-size:17px;
+  font-weight:800;
+  line-height:1;
+}
+
+.confidence-meter-label{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  color:var(--text-light);
+  font-weight:700;
+}
+
+body.dark .confidence-meter-inner{
+  background:#1E293B;
+}
+
+/* ===========================
+   Result Cards (Doctor / Disease / Patient)
+=========================== */
+
+.result-doctor-card,
+.result-disease-card,
+.result-patient-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  box-shadow:var(--shadow-sm);
+}
+
+.result-card-heading{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:16px;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:16px;
+}
+
+.result-card-heading svg{
+  color:var(--primary);
+  font-size:18px;
+}
+
+.result-card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:14px;
+}
+
+.result-card-grid .result-item{
+  margin:0;
+}
+
+/* ===========================
+   Barcode / QR chips
+=========================== */
+
+.result-code-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.result-code-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 18px;
+  border-radius:14px;
+  background:#F0FDFA;
+  border:1px solid #99F6E4;
+  color:#115E59;
+  font-size:14px;
+  font-weight:600;
+}
+
+.result-code-chip svg{
+  color:var(--primary);
+  font-size:16px;
+}
+
+body.dark .result-code-chip{
+  background:#134E4A;
+  border-color:#115E59;
+  color:#5EEAD4;
+}
+
+/* ===========================
+   Medicine Cards
+=========================== */
+
+.result-medicine-cards{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.med-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-left:5px solid var(--primary);
+  border-radius:18px;
+  padding:20px;
+  box-shadow:var(--shadow-sm);
+  transition:.3s;
+}
+
+.med-card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-md);
+}
+
+.med-card.editing{
+  border-left-color:var(--warning);
+}
+
+.med-card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+
+.med-card-title{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.med-card-index{
+  width:34px;
+  height:34px;
+  flex-shrink:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:14px;
+}
+
+.med-card-name{
+  font-size:18px;
+  color:var(--text);
+  display:block;
+}
+
+.med-card-subtitle{
+  display:block;
+  font-size:13px;
+  color:var(--text-light);
+  margin-top:2px;
+}
+
+.med-card-confidence{
+  flex-shrink:0;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:800;
+}
+
+.med-card-confidence.high{
+  background:#DCFCE7;
+  color:#15803D;
+}
+
+.med-card-confidence.medium{
+  background:#FEF3C7;
+  color:#B45309;
+}
+
+.med-card-confidence.low{
+  background:#FEE2E2;
+  color:#B91C1C;
+}
+
+.med-card-fields{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.med-card-field{
+  background:#F8FAFC;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:10px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+
+.med-card-field-label{
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  color:var(--text-light);
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.med-card-field-label svg{
+  color:var(--primary);
+  font-size:12px;
+}
+
+.med-card-field-value{
+  font-size:14px;
+  font-weight:600;
+  color:var(--text);
+  word-break:break-word;
+}
+
+.med-card-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.med-card-actions .ocr-btn{
+  padding:10px 18px;
+  font-size:13px;
+}
+
+.ocr-btn.danger{
+  background:#FEE2E2;
+  color:#DC2626;
+}
+
+.ocr-btn.danger:hover{
+  background:#FECACA;
+}
+
+.med-edit-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.med-card-badge{
+  padding:5px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.badge-edit{
+  background:#FEF3C7;
+  color:#B45309;
+}
+
+/* ===========================
+   Expiry / Review Banners
+=========================== */
+
+.expiry-warning-banner{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 18px;
+  background:#FEE2E2;
+  border:1px solid #FECACA;
+  border-left:6px solid #DC2626;
+  border-radius:14px;
+  color:#991B1B;
+  font-weight:600;
+  font-size:14px;
+  flex-wrap:wrap;
+}
+
+.expiry-warning-banner svg{
+  font-size:20px;
+  color:#DC2626;
+}
+
+.expiry-warning-banner.soon{
+  background:#FEF3C7;
+  border-color:#FDE68A;
+  border-left-color:#F59E0B;
+  color:#92400E;
+}
+
+.expiry-warning-banner.soon svg{
+  color:#F59E0B;
+}
+
+.manual-review-banner{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 18px;
+  background:#FFF7ED;
+  border:1px solid #FED7AA;
+  border-left:6px solid #EA580C;
+  border-radius:14px;
+  color:#9A3412;
+  font-weight:600;
+  font-size:14px;
+  flex-wrap:wrap;
+}
+
+.manual-review-banner svg{
+  font-size:20px;
+  color:#EA580C;
+}
+
+/* ===========================
+   JSON Viewer
+=========================== */
+
+.result-json-block{
+  margin-top:6px;
+}
+
+.result-json{
+  margin-top:14px;
+  padding:18px;
+  background:#0F172A;
+  color:#A5F3FC;
+  border-radius:14px;
+  font-family:'Cascadia Code',Consolas,Monaco,monospace;
+  font-size:13px;
+  line-height:1.7;
+  max-height:420px;
+  overflow:auto;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+body.dark .result-json{
+  background:#0B1220;
+}
+
+/* Dark theme support for the new cards */
+body.dark .med-card,
+body.dark .result-doctor-card,
+body.dark .result-disease-card,
+body.dark .result-patient-card{
+  background:#1E293B;
+  border-color:#334155;
+}
+
+body.dark .med-card-name{
+  color:#F8FAFC;
+}
+
+body.dark .med-card-field{
+  background:#273449;
+  border-color:#334155;
+}
+
+body.dark .med-card-field-value{
+  color:#E2E8F0;
+}
+
+body.dark .med-card-confidence.high{background:#14532D;color:#86EFAC;}
+body.dark .med-card-confidence.medium{background:#78350F;color:#FCD34D;}
+body.dark .med-card-confidence.low{background:#7F1D1D;color:#FCA5A5;}
+
+body.dark .expiry-warning-banner{background:#7F1D1D;border-color:#991B1B;color:#FECACA;}
+body.dark .expiry-warning-banner.soon{background:#78350F;border-color:#92400E;color:#FDE68A;}
+body.dark .manual-review-banner{background:#7C2D12;border-color:#9A3412;color:#FDBA74;}
+
+body.dark .ocr-btn.secondary{
+  background:#334155;
+  color:#E2E8F0;
+}
+
+body.dark .ocr-btn.danger{
+  background:#7F1D1D;
+  color:#FECACA;
+}
+
+/* Responsive tweaks for the new blocks */
+@media(max-width:768px){
+  .result-summary-row{
+    flex-direction:column;
+  }
+  .result-image-preview{
+    flex-basis:auto;
+  }
+  .med-card-fields{
+    grid-template-columns:1fr;
+  }
+  .med-edit-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ==========================================================
+   Prescription OCR - Production CSS
+   Part 4 : Footer | Responsive | Utilities | Dark Mode
+   ========================================================== */
+
+/* ===========================
+   Footer
+=========================== */
+
+.ocr-footer{
+    margin-top:40px;
+    padding:22px;
+    border-radius:18px;
+    background:#ffffff;
+    border:1px solid #E2E8F0;
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+}
+
+.ocr-footer p{
+    margin:0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#64748B;
+    font-size:14px;
+    line-height:1.8;
+}
+
+.ocr-footer svg{
+    color:#0F766E;
+    font-size:18px;
+}
+
+/* ===========================
+   Glass Effect
+=========================== */
+
+.glass-card{
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.25);
+}
+
+.glass{
+    backdrop-filter:blur(16px);
+}
+
+/* ===========================
+   Utility Classes
+=========================== */
+
+.text-center{
+    text-align:center;
+}
+
+.text-right{
+    text-align:right;
+}
+
+.text-left{
+    text-align:left;
+}
+
+.mt-10{
+    margin-top:10px;
+}
+
+.mt-20{
+    margin-top:20px;
+}
+
+.mt-30{
+    margin-top:30px;
+}
+
+.mb-10{
+    margin-bottom:10px;
+}
+
+.mb-20{
+    margin-bottom:20px;
+}
+
+.hidden{
+    display:none;
+}
+
+.flex{
+    display:flex;
+}
+
+.align-center{
+    align-items:center;
+}
+
+.justify-center{
+    justify-content:center;
+}
+
+.justify-between{
+    justify-content:space-between;
+}
+
+.w-100{
+    width:100%;
+}
+
+.rounded{
+    border-radius:16px;
+}
+
+.shadow{
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+/* ===========================
+   Hover Effects
+=========================== */
+
+.ocr-card,
+.preview-btn,
+.ocr-btn,
+.history-action-btn,
+.page-btn,
+.result-item{
+
+    transition:all .3s ease;
+
+}
+
+.preview-btn:hover,
+.ocr-btn:hover,
+.history-action-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.ocr-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+    height:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#94A3B8;
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#64748B;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#F1F5F9;
+
+}
+
+/* ===========================
+   Fade Animation
+=========================== */
+
+.fade-up{
+
+    animation:fadeUp .45s ease;
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+.zoom-in{
+
+    animation:zoomIn .4s ease;
+
+}
+
+@keyframes zoomIn{
+
+from{
+
+opacity:0;
+transform:scale(.92);
+
+}
+
+to{
+
+opacity:1;
+transform:scale(1);
+
+}
+
+}
+
+/* ===========================
+   Responsive - Large
+=========================== */
+
+@media(max-width:1400px){
+
+.ocr-content{
+
+padding:90px 25px 30px;
+
+}
+
+}
+
+/* ===========================
+   Laptop
+=========================== */
+
+@media(max-width:1200px){
+
+.ocr-cards-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.manual-form-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.ocr-header{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+.ocr-header-right{
+
+width:100%;
+justify-content:flex-start;
+flex-wrap:wrap;
+
+}
+
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media(max-width:992px){
+
+.ocr-content-wrapper{
+
+margin-left:72px;
+
+}
+
+.ocr-content{
+
+padding:90px 20px;
+
+}
+
+.ocr-result-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.history-pagination{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+.result-status-row{
+
+flex-direction:column;
+
+}
+
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media(max-width:768px){
+
+.ocr-content{
+
+padding:90px 15px;
+
+}
+
+.ocr-header h1{
+
+font-size:24px;
+
+}
+
+.ocr-header-left{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+.ocr-header-icon{
+
+width:58px;
+height:58px;
+
+}
+
+.ocr-stat{
+
+width:100%;
+justify-content:center;
+
+}
+
+.preview-actions{
+
+flex-direction:column;
+
+}
+
+.preview-btn{
+
+width:100%;
+justify-content:center;
+
+}
+
+.form-actions{
+
+flex-direction:column;
+
+}
+
+.ocr-btn{
+
+width:100%;
+
+}
+
+.history-controls{
+
+flex-direction:column;
+
+}
+
+.history-search{
+
+width:100%;
+
+}
+
+.history-filter{
+
+width:100%;
+
+}
+
+.history-table{
+
+min-width:900px;
+
+}
+
+}
+
+/* ===========================
+   Small Mobile
+=========================== */
+
+@media(max-width:480px){
+
+.ocr-content{
+
+padding:85px 12px;
+
+}
+
+.ocr-card{
+
+border-radius:18px;
+
+}
+
+.ocr-card-body{
+
+padding:18px;
+
+}
+
+.drop-zone{
+
+padding:20px;
+
+min-height:220px;
+
+}
+
+.preview-image{
+
+height:220px;
+
+}
+
+.result-item{
+
+padding:15px;
+
+}
+
+}
+
+/* ===========================
+   Dark Theme Support
+=========================== */
+
+body.dark .ocr-layout{
+
+background:#0F172A;
+
+}
+
+body.dark .ocr-card,
+body.dark .ocr-footer{
+
+background:#1E293B;
+border-color:#334155;
+
+}
+
+body.dark .result-item,
+body.dark .result-medicines-list{
+
+    background:#273449;
+
+    border-color:#1E293B;
+
+}
+
+body.dark .result-medicines-list strong{
+
+    color:#E2E8F0;
+
+}
+
+body.dark .result-medicines-list li{
+
+    color:#CBD5E1;
+
+}
+
+body.dark .medicine-list-name{
+
+    color:#5EEAD4;
+
+}
+
+body.dark .medicine-list-dosage{
+
+    color:#E2E8F0;
+
+}
+
+body.dark .medicine-list-freq{
+
+    color:#94A3B8;
+
+}
+
+body.dark .result-extra{
+
+background:#273449;
+border-color:#334155;
+
+}
+
+body.dark .prescription-summary{
+
+background:#1E293B;
+border-color:#334155;
+color:#CBD5E1;
+
+}
+
+body.dark .history-table{
+
+background:#1E293B;
+
+}
+
+body.dark .history-table td{
+
+border-color:#334155;
+
+}
+
+body.dark .history-table thead{
+
+background:#0F766E;
+
+}
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark .result-value{
+
+color:#F8FAFC;
+
+}
+
+body.dark p,
+body.dark span,
+body.dark label{
+
+color:#CBD5E1;
+
+}
+
+body.dark input,
+body.dark textarea,
+body.dark select{
+
+background:#273449;
+border-color:#475569;
+color:white;
+
+}
+
+body.dark .history-search{
+
+background:#273449;
+border-color:#475569;
+
+}
+
+body.dark .page-btn{
+
+background:#334155;
+color:white;
+
+}
+
+body.dark .page-btn.active{
+
+background:#0F766E;
+
+}
+
+/* ===========================
+   Print
+=========================== */@media print{
+
+.sidebar,
+.ocr-header-right,
+.preview-actions,
+.result-actions,
+.history-actions,
+.history-pagination{
+display:none !important;
+
+}
+
+.ocr-content-wrapper{
+
+margin:0 !important;
+
+}
+
+.ocr-card{
+
+box-shadow:none;
+border:1px solid #ddd;
+
+}
+
+}
+
+/* ==========================================================
+   Visibility Fixes (keep layout/spacing — only colors)
+   ----------------------------------------------------------
+   Form controls inherit a light body text color from the global
+   stylesheet, which made typed text almost invisible on the white
+   inputs. These rules force black text, dark placeholders, dark
+   labels and black dropdown/date-picker text everywhere on the page.
+   ========================================================== */
+
+/* --- Every input, select, textarea and date picker: black text --- */
+.ocr-card input,
+.ocr-card select,
+.ocr-card textarea{
+  color:#000000;
+  caret-color:#000000;
+  -webkit-text-fill-color:#000000;
+}
+
+/* --- Placeholders: readable slate --- */
+.ocr-card input::placeholder,
+.ocr-card textarea::placeholder{
+  color:#6b7280;
+  opacity:1;
+}
+
+.ocr-card input::-webkit-input-placeholder,
+.ocr-card textarea::-webkit-input-placeholder,
+.ocr-card input::-moz-placeholder,
+.ocr-card textarea::-moz-placeholder,
+.ocr-card input:-ms-input-placeholder,
+.ocr-card textarea:-ms-input-placeholder{
+  color:#6b7280;
+  opacity:1;
+}
+
+/* --- Dropdowns: selected value + every option black on white --- */
+.ocr-card select,
+.ocr-card select option{
+  color:#000000;
+  background:#ffffff;
+}
+
+/* --- Date pickers: black text, light native picker --- */
+.ocr-card input[type="date"]{
+  color:#000000;
+  color-scheme:light;
+}
+
+/* --- Labels: dark and readable --- */
+.ocr-card .form-group label{
+  color:#111827;
+}
+
+.ocr-card .form-group label .required{
+  color:#DC2626;
+}
+
+/* ==========================================================
+   OCR Result visibility — values black, labels slate, headings dark
+   ========================================================== */
+
+.ocr-card .result-label{
+  color:#374151;
+}
+
+.ocr-card .result-value,
+.ocr-card .result-overview h3,
+.ocr-card .med-card-name,
+.ocr-card .med-card-field-value,
+.ocr-card .prescription-summary{
+  color:#000000;
+}
+
+.ocr-card .result-card-heading,
+.ocr-card .med-card-head strong{
+  color:#111827;
+}
+
+.ocr-card .med-card-field-label{
+  color:#374151;
+}
+
+/* Status & confidence badge text: black (backgrounds stay colored) */
+.ocr-card .ocr-badge,
+.ocr-card .confidence-score{
+  color:#000000;
+}
+
+.ocr-card .result-overview-disease{
+  color:#374151;
+}

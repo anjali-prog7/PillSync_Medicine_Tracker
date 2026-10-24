@@ -1,0 +1,201 @@
+.chartSection{
+
+display:grid;
+
+grid-template-columns:2fr 1fr;
+
+gap:25px;
+
+padding:40px;
+
+}
+
+/* ── Shared card styling for the four analytics cards ── */
+.chartCard,
+.healthCard,
+.activityCard{
+
+background:white;
+
+border-radius:20px;
+
+border:1.5px solid rgba(13,120,116,.4);
+
+box-shadow:0 2px 6px rgba(13,120,116,.06),0 12px 28px rgba(13,120,116,.12);
+
+transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+
+}
+
+.chartCard:hover,
+.healthCard:hover,
+.activityCard:hover{
+
+transform:translateY(-2px);
+
+border-color:rgba(13,120,116,.65);
+
+box-shadow:0 4px 12px rgba(13,120,116,.1),0 20px 44px rgba(13,120,116,.18);
+
+}
+
+.chartCard{
+
+padding:25px;
+
+}
+
+.healthCard{
+
+padding:30px;
+
+text-align:center;
+
+}
+
+.activityCard{
+
+padding:25px;
+
+}
+
+/* ── Card titles ── */
+.chartCard h2,
+.healthCard h2,
+.activityCard h2{
+
+margin-bottom:20px;
+
+font-size:19px;
+
+font-weight:700;
+
+letter-spacing:.5px;
+
+}
+
+.chartCard h2{
+
+color:#1F2937;
+
+}
+
+.healthCard h2,
+.activityCard h2{
+
+color:#0F172A;
+
+}
+
+.circle{
+
+width:180px;
+
+height:180px;
+
+border-radius:50%;
+
+margin:30px auto;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+border:14px solid #009688;
+
+}
+
+.circle h1{
+
+font-size:55px;
+
+color:#009688;
+
+}
+
+.circle span{
+
+font-size:18px;
+
+color:#555;
+
+}
+
+.healthCard p{
+
+font-size:17px;
+
+color:#666;
+
+margin-top:15px;
+
+}
+
+.bottomGrid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:25px;
+
+padding:0 40px 40px;
+
+}
+
+.activityCard ul{
+
+list-style:none;
+
+}
+
+.activityCard li{
+
+padding:15px;
+
+border-bottom:1px solid #ECECEC;
+
+font-size:17px;
+
+}
+
+.activityCard li:last-child{
+
+border:none;
+
+}
+
+/* ── Loading / error / empty states for the analytics cards ──
+   Shown only when the API hasn't returned data yet or failed, so the
+   cards never masquerade missing data as a fake 0 value. */
+.chart-state-msg{
+
+min-height:280px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+color:#94a3b8;
+
+font-size:15px;
+
+text-align:center;
+
+line-height:1.6;
+
+}
+
+.chart-state-msg p{
+
+margin:4px 0;
+
+}

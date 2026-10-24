@@ -1,0 +1,418 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#eef8f7;
+}
+
+/* Navbar */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:8px 50px;
+background:#0d7874;
+color:white;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+}
+
+.logo span{
+margin-left:5px;
+}
+
+.navbar ul{
+display:flex;
+list-style:none;
+gap:40px;
+}
+
+.navbar li{
+cursor:pointer;
+}
+
+.navbar button{
+padding:10px 25px;
+border:none;
+background:white;
+border-radius:8px;
+font-weight:bold;
+color:#0d7874;
+}
+
+/* Hero */
+
+.hero{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+padding:70px;
+/* The navbar is position: fixed and 75px tall, so it overlays the top of
+   the viewport and takes up no layout space. Reserve only its height (plus
+   a small 20px breathing gap) as top padding so the Hero content — including
+   the white Login card — starts BELOW the navbar and the complete Login
+   card fits inside the remaining viewport height instead of being pushed
+   below the visible area. */
+padding-top:calc(75px + 20px);
+/* The Hero is the Home page's content area below the fixed navbar, so it
+   fills the remaining viewport height (100vh minus the 75px navbar) rather
+   than a fixed 80vh slice. */
+min-height:calc(100vh - 75px);
+}
+
+.left{
+width:55%;
+}
+
+.left h4{
+color:#0d7874;
+margin-bottom:20px;
+}
+
+.left h1{
+font-size:70px;
+line-height:1.1;
+margin-bottom:20px;
+color:#1C2733;
+}
+
+.left span{
+color:#0d7874;
+}
+
+.left p{
+font-size:20px;
+color:#555;
+line-height:1.7;
+}
+
+.features{
+display:flex;
+gap:30px;
+margin-top:50px;
+flex-wrap:wrap; /* keep the 3 cards aligned when space is tight */
+}
+
+.feature{
+background:white;
+padding:20px;
+border-radius:15px;
+width:180px;
+/* Clearly visible border in the exact project green (#0F766E). */
+border:2px solid #0F766E;
+box-shadow:0 10px 20px rgba(0,0,0,.1);
+transition:transform .25s ease, box-shadow .25s ease;
+}
+
+.feature h3{
+margin-top:10px;
+}
+
+/* Login */
+
+.login-card{
+width:430px;
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+color:#1C2733;
+}
+
+.login-card h2{
+text-align:center;
+margin-bottom:10px;
+color:#1C2733;
+}
+
+.login-card p{
+text-align:center;
+margin-bottom:20px;
+color:#666;
+}
+
+.login-card input{
+width:100%;
+padding:15px;
+margin-bottom:20px;
+border:1px solid #0b7a75;
+border-radius:10px;
+color:#1C2733;
+}
+.login-card input::placeholder{
+    color:#9CA3AF;
+}
+
+.remember {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.remember-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.remember-label input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.forgot {
+  cursor: pointer;
+  color: #0f8f88;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.login-btn{
+width:100%;
+padding:15px;
+background:#0d7874;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+.divider{
+text-align:center;
+margin:20px;
+color:#777;
+}
+
+.social > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.social button{
+flex:1;
+padding:15px;
+border-radius:10px;
+border:1px solid #ccc;
+background:white;
+cursor:pointer;
+}
+
+
+.signup{
+margin-top:20px;
+}
+
+.signup span{
+color:#0d7874;
+font-weight:bold;
+cursor:pointer;
+}
+
+.feature{
+    background:white;
+    color:#1C2733;
+}
+
+.feature h3{
+    color:#1C2733;
+}
+
+.feature p{
+    color:#0b7a75;
+}
+
+/* Subtle hover lift + soft green glow in the exact project green. */
+.feature:hover{
+    transform:translateY(-6px);
+    box-shadow:0 14px 28px rgba(15,118,110,.25);
+}
+
+/* Center the cards when they wrap on smaller screens. */
+@media (max-width:700px){
+    .features{
+        justify-content:center;
+    }
+}
+
+/* Footer styles moved to src/styles/Footer.css */
+
+/* ==========================================
+   ABOUT SECTION
+========================================== */
+
+.about {
+  padding: 80px 35px;
+  background: #f0faf8;
+}
+
+.about-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.about-badge {
+  display: inline-block;
+  background: #e6faf7;
+  color: #0D766E;
+  padding: 6px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.about-header h2 {
+  font-size: 40px;
+  color: #1C2733;
+  margin-bottom: 14px;
+}
+
+.about-highlight {
+  color: #0D766E;
+}
+
+.about-subtitle {
+  font-size: 17px;
+  color: #64748b;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.about-card {
+  background: #fff;
+  padding: 32px 26px;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.about-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(13, 118, 110, 0.12);
+}
+
+.about-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #e6faf7;
+  color: #0D766E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+
+.about-card h3 {
+  color: #1C2733;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.about-card p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .about {
+    padding: 50px 16px;
+  }
+  .about-header h2 {
+    font-size: 28px;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================
+   COMING SOON PAGE
+========================================== */
+
+.coming-soon-page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 60px;
+}
+
+.coming-soon-content {
+  text-align: center;
+  max-width: 480px;
+}
+
+.coming-soon-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.coming-soon-content h1 {
+  font-size: 36px;
+  color: #1C2733;
+  margin-bottom: 14px;
+}
+
+.coming-soon-content p {
+  font-size: 16px;
+  color: #64748b;
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+
+.coming-soon-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #0D766E;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+.coming-soon-back:hover {
+  background: #095a54;
+}

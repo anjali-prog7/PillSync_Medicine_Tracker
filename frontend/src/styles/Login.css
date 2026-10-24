@@ -1,0 +1,1021 @@
+* {
+  box-sizing: border-box;
+}
+
+.login-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  /* Slightly tighter vertical rhythm so the complete Login box (with the
+     fixed 75px navbar clearance above it) fits inside the viewport on
+     common laptop screens instead of extending below the visible area. */
+  padding: 30px 24px;
+  /* The navbar is position: fixed and 75px tall, so it overlays the top of
+     the viewport and takes up no layout space. Add its height (plus the
+     original 55px spacing) as top padding so the Login box always starts
+     below the navbar instead of behind it. */
+  padding-top: calc(75px + 55px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 5% 10%,
+      rgba(83, 196, 188, 0.28) 0,
+      rgba(83, 196, 188, 0.08) 15%,
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #e9faf8 0%,
+      #f7fdfc 48%,
+      #e8f9f7 100%
+    );
+}
+
+/* =========================
+   BACKGROUND CIRCLES
+========================= */
+
+.login-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.circle-one {
+  width: 180px;
+  height: 180px;
+
+  top: -65px;
+  left: -45px;
+
+  background: rgba(39, 183, 174, 0.62);
+}
+
+.circle-two {
+  width: 105px;
+  height: 105px;
+
+  top: 105px;
+  left: 65px;
+
+  background: rgba(121, 213, 207, 0.22);
+}
+
+.circle-three {
+  width: 230px;
+  height: 230px;
+
+  right: -90px;
+  bottom: -75px;
+
+  background: rgba(55, 187, 178, 0.45);
+}
+
+/* =========================
+   DOT PATTERN
+========================= */
+
+.login-dot-pattern {
+  position: absolute;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns: repeat(6, 6px);
+  gap: 14px;
+}
+
+.login-dot-pattern span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: rgba(40, 178, 169, 0.34);
+}
+
+.pattern-top {
+  top: 20px;
+  right: 9%;
+}
+
+.pattern-left {
+  left: 7%;
+  bottom: 20%;
+
+  grid-template-columns: repeat(3, 6px);
+}
+
+/* =========================
+   MAIN LOGIN CONTAINER
+========================= */
+
+.login-container {
+  position: relative;
+  z-index: 5;
+
+  /* Vertical auto margins: when the box is taller than the viewport,
+     flex centering would overflow it equally top/bottom and push it up
+     behind the fixed navbar. Auto margins collapse to 0 in that case, so
+     the box aligns to the page's top padding (below the navbar) instead. */
+  margin: auto 0;
+
+  width: 100%;
+  max-width: 950px;
+  min-height: 610px;
+
+  display: grid;
+  grid-template-columns: 42% 58%;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(209, 229, 227, 0.9);
+
+  box-shadow:
+    0 25px 65px rgba(17, 92, 91, 0.14),
+    0 5px 20px rgba(17, 92, 91, 0.06);
+}
+
+/* =========================
+   LEFT PANEL
+========================= */
+
+.login-welcome-panel {
+  position: relative;
+
+  min-height: 610px;
+
+  padding: 65px 45px 35px;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background:
+    radial-gradient(
+      circle at 30% 10%,
+      rgba(23, 175, 166, 0.18),
+      transparent 32%
+    ),
+    linear-gradient(
+      155deg,
+      #087f7a 0%,
+      #006c69 48%,
+      #005c5a 100%
+    );
+}
+
+.login-welcome-panel::before {
+  content: "";
+
+  position: absolute;
+
+  width: 250px;
+  height: 720px;
+
+  top: -60px;
+  right: -185px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+}
+
+.login-welcome-panel::after {
+  content: "";
+
+  position: absolute;
+
+  width: 330px;
+  height: 330px;
+
+  left: -180px;
+  top: -140px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 50%;
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 3;
+
+  text-align: center;
+}
+
+.login-pill-logo {
+  width: 82px;
+  height: 82px;
+
+  margin: 0 auto 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background: rgba(15, 181, 171, 0.35);
+
+  border: 2px solid rgba(99, 229, 219, 0.45);
+}
+
+.login-pill-logo svg {
+  width: 49px;
+  height: 49px;
+}
+
+.welcome-content h2 {
+  margin: 0 0 12px;
+
+  color: #ffffff;
+
+  font-size: 32px;
+  line-height: 1.2;
+
+  font-weight: 700;
+
+  letter-spacing: -0.6px;
+}
+
+.welcome-content p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.88);
+
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.welcome-content p span {
+  display: block;
+
+  color: #4ce1d5;
+
+  font-weight: 600;
+}
+
+/* =========================
+   MEDICINE ILLUSTRATION
+========================= */
+
+.medicine-illustration {
+  position: absolute;
+
+  z-index: 3;
+
+  width: 300px;
+  height: 245px;
+
+  left: 50%;
+  bottom: 28px;
+
+  transform: translateX(-50%);
+}
+
+.medicine-bottle {
+  position: absolute;
+
+  left: 70px;
+  bottom: 20px;
+
+  width: 110px;
+  height: 190px;
+
+  z-index: 5;
+}
+
+.bottle-cap {
+  width: 78px;
+  height: 36px;
+
+  margin: 0 auto;
+
+  border-radius: 10px 10px 5px 5px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #008f88 0,
+      #008f88 5px,
+      #007b76 5px,
+      #007b76 8px
+    );
+
+  box-shadow: 0 6px 10px rgba(0, 44, 43, 0.22);
+}
+
+.bottle-body {
+  width: 105px;
+  height: 155px;
+
+  margin: -2px auto 0;
+
+  overflow: hidden;
+
+  border-radius: 20px 20px 28px 28px;
+
+  background: linear-gradient(
+    90deg,
+    #00736e,
+    #00a097,
+    #006b67
+  );
+
+  box-shadow: 0 15px 22px rgba(0, 38, 37, 0.28);
+}
+
+.bottle-label {
+  width: 100%;
+  height: 82px;
+
+  margin-top: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f4fbfa;
+}
+
+.medical-plus {
+  color: #0cb8ad;
+
+  font-size: 67px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+.pill-strip {
+  position: absolute;
+
+  z-index: 4;
+
+  width: 82px;
+  height: 175px;
+
+  right: 53px;
+  bottom: 34px;
+
+  padding: 15px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    #f4f7f7,
+    #b8c5c5
+  );
+
+  transform: rotate(9deg);
+
+  box-shadow: 0 13px 22px rgba(0, 40, 39, 0.25);
+}
+
+.pill-strip span {
+  width: 25px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    145deg,
+    #ffffff,
+    #cbd5d5
+  );
+
+  box-shadow:
+    inset -3px -3px 5px rgba(93, 108, 108, 0.18),
+    1px 3px 5px rgba(33, 63, 62, 0.2);
+}
+
+.medicine-pill {
+  position: absolute;
+
+  z-index: 8;
+
+  width: 54px;
+  height: 24px;
+
+  border-radius: 30px;
+
+  background: linear-gradient(
+    90deg,
+    #ffffff 50%,
+    #dfe7e7 50%
+  );
+
+  box-shadow: 0 7px 12px rgba(0, 42, 40, 0.2);
+}
+
+.pill-one {
+  right: 60px;
+  bottom: 7px;
+
+  transform: rotate(8deg);
+}
+
+.pill-two {
+  right: 102px;
+  bottom: 20px;
+
+  transform: rotate(-15deg);
+}
+
+.leaf {
+  position: absolute;
+
+  z-index: 2;
+
+  width: 70px;
+  height: 34px;
+
+  border-radius: 100% 0 100% 0;
+
+  background: linear-gradient(
+    135deg,
+    #4ec877,
+    #198e55
+  );
+}
+
+.leaf-one {
+  left: 35px;
+  bottom: 70px;
+
+  transform: rotate(35deg);
+}
+
+.leaf-two {
+  left: 25px;
+  bottom: 105px;
+
+  transform: rotate(65deg);
+}
+
+.leaf-three {
+  right: 40px;
+  bottom: 60px;
+
+  transform: rotate(-35deg);
+}
+
+/* =========================
+   RIGHT FORM PANEL
+========================= */
+
+.login-form-panel {
+  position: relative;
+  z-index: 4;
+
+  padding: 40px 65px 28px;
+
+  background: #ffffff;
+}
+
+.login-heading {
+  margin-bottom: 16px;
+
+  text-align: center;
+}
+
+.login-heading h1 {
+  margin: 0 0 7px;
+
+  color: #075d5c;
+
+  font-size: 29px;
+  line-height: 1.25;
+
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+}
+
+.login-heading p {
+  margin: 0;
+
+  color: #778287;
+
+  font-size: 15px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+.login-input-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #17363d;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.login-input-wrapper {
+  min-height: 58px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 16px;
+
+  border: 1px solid #d5dfdf;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-input-wrapper:focus-within {
+  border-color: #008d86;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 141, 134, 0.09);
+}
+
+.login-input-icon {
+  flex: 0 0 27px;
+
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 13px;
+}
+
+.login-input-icon svg {
+  width: 21px;
+  height: 21px;
+
+  fill: #6c797d;
+}
+
+.login-input-wrapper input {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 0;
+
+  border: none;
+  outline: none;
+
+  color: #263f45;
+
+  background: transparent;
+
+  font-family: inherit;
+
+  font-size: 14px;
+}
+
+.login-input-wrapper input::placeholder {
+  color: #a4adb1;
+}
+
+/* =========================
+   PASSWORD EYE
+========================= */
+
+.login-password-toggle {
+  width: 36px;
+  height: 36px;
+
+  padding: 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.login-password-toggle:hover {
+  background: #eef8f7;
+}
+
+.login-password-toggle svg {
+  width: 21px;
+  height: 21px;
+
+  fill: #65777c;
+}
+
+/* =========================
+   LOGIN OPTIONS
+========================= */
+
+.login-options {
+  margin-top: -3px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: #334b51;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.remember-me input {
+  width: 17px;
+  height: 17px;
+
+  accent-color: #008c85;
+
+  cursor: pointer;
+}
+
+.forgot-password {
+  padding: 0;
+
+  border: none;
+
+  color: #00847e;
+
+  background: transparent;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.login-submit-btn {
+  width: 100%;
+  min-height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  border: none;
+  border-radius: 9px;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    90deg,
+    #00827c,
+    #008e87
+  );
+
+  box-shadow:
+    0 8px 18px rgba(0, 132, 125, 0.17);
+
+  font-family: inherit;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.login-submit-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 11px 22px rgba(0, 132, 125, 0.23);
+}
+
+.login-submit-btn:disabled {
+  opacity: 0.68;
+  cursor: not-allowed;
+}
+
+.login-submit-btn svg {
+  width: 20px;
+  height: 20px;
+
+  fill: #ffffff;
+}
+
+/* =========================
+   DIVIDER
+========================= */
+
+.login-divider {
+  margin: 15px 0 12px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+}
+
+.login-divider span {
+  flex: 1;
+
+  height: 1px;
+
+  background: #dfe5e5;
+}
+
+.login-divider p {
+  margin: 0;
+
+  color: #788589;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================
+   SOCIAL BUTTONS
+========================= */
+
+.login-social-buttons {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.login-social-btn {
+  width: 100%;
+  min-height: 53px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  border: 1px solid #d9e1e1;
+  border-radius: 9px;
+
+  color: #18343a;
+
+  background: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-social-btn:hover {
+  border-color: #008c85;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 15px rgba(17, 88, 85, 0.07);
+}
+
+.login-google-icon {
+  color: #4285f4;
+
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.login-apple-icon {
+  color: #000000;
+
+  font-size: 25px;
+  line-height: 1;
+}
+
+/* =========================
+   SIGN UP TEXT
+========================= */
+
+.login-signup-text {
+  margin: 14px 0 0;
+
+  text-align: center;
+
+  color: #66767b;
+
+  font-size: 13px;
+}
+
+.login-signup-text a {
+  color: #00847e;
+
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.login-signup-text a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+  .login-container {
+    max-width: 720px;
+
+    grid-template-columns: 38% 62%;
+  }
+
+  .login-welcome-panel {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .welcome-content h2 {
+    font-size: 27px;
+  }
+
+  .login-form-panel {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+  .login-page {
+    padding: 35px 15px;
+    /* Keep clearing the 75px fixed navbar on smaller screens too. */
+    padding-top: calc(75px + 35px);
+  }
+
+  .login-container {
+    max-width: 520px;
+    min-height: auto;
+
+    display: block;
+
+    border-radius: 20px;
+  }
+
+  .login-welcome-panel {
+    min-height: 220px;
+
+    padding: 30px 20px;
+  }
+
+  .login-welcome-panel::before {
+    display: none;
+  }
+
+  .login-pill-logo {
+    width: 60px;
+    height: 60px;
+
+    margin-bottom: 13px;
+  }
+
+  .login-pill-logo svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .welcome-content h2 {
+    margin-bottom: 7px;
+
+    font-size: 24px;
+  }
+
+  .welcome-content p {
+    font-size: 14px;
+  }
+
+  .medicine-illustration {
+    display: none;
+  }
+
+  .login-form-panel {
+    padding: 35px 28px 32px;
+  }
+
+  .login-heading h1 {
+    font-size: 25px;
+  }
+
+  .login-dot-pattern,
+  .login-bg-circle {
+    display: none;
+  }
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 420px) {
+  .login-page {
+    padding: 25px 10px;
+    /* Smallest screens still need clearance below the 75px fixed navbar. */
+    padding-top: calc(75px + 25px);
+  }
+
+  .login-form-panel {
+    padding: 30px 18px 27px;
+  }
+
+  .login-heading {
+    margin-bottom: 25px;
+  }
+
+  .login-heading h1 {
+    font-size: 22px;
+  }
+
+  .login-heading p {
+    font-size: 13px;
+  }
+
+  .login-input-wrapper {
+    min-height: 54px;
+  }
+
+  .login-options {
+    gap: 12px;
+  }
+
+  .remember-me,
+  .forgot-password {
+    font-size: 12px;
+  }
+
+  .login-submit-btn {
+    min-height: 51px;
+  }
+}

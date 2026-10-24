@@ -1,0 +1,738 @@
+* {
+  box-sizing: border-box;
+}
+
+.register-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  padding: 45px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 8% 8%,
+      rgba(204, 242, 239, 0.6) 0,
+      rgba(204, 242, 239, 0.12) 17%,
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 95% 85%,
+      rgba(191, 238, 234, 0.5) 0,
+      rgba(191, 238, 234, 0.12) 18%,
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      #f5fcfb 0%,
+      #ffffff 50%,
+      #f3fbfa 100%
+    );
+}
+
+.register-page::before {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 180px;
+  left: -100px;
+  bottom: -90px;
+  border-radius: 50%;
+  background: rgba(207, 244, 241, 0.5);
+  transform: rotate(7deg);
+}
+
+.register-page::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 180px;
+  right: -160px;
+  bottom: -110px;
+  border-radius: 50%;
+  background: rgba(218, 247, 245, 0.6);
+  transform: rotate(-8deg);
+}
+
+/* =========================
+   REGISTER CARD
+========================= */
+
+.register-card {
+  position: relative;
+  z-index: 5;
+
+  width: 100%;
+  max-width: 570px;
+
+  padding: 35px 42px 32px;
+
+  background: rgba(255, 255, 255, 0.98);
+
+  border: 1px solid rgba(220, 232, 232, 0.9);
+  border-radius: 24px;
+
+  box-shadow:
+    0 18px 50px rgba(20, 77, 80, 0.09),
+    0 4px 14px rgba(20, 77, 80, 0.04);
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.register-logo {
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 15px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #008f86;
+  background: #e4f7f5;
+}
+
+.register-logo svg {
+  width: 42px;
+  height: 42px;
+}
+
+/* =========================
+   HEADING
+========================= */
+
+.register-heading {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.register-heading h1 {
+  margin: 0 0 8px;
+
+  color: #082f39;
+
+  font-size: 30px;
+  line-height: 1.2;
+
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+
+.register-heading p {
+  margin: 0;
+
+  color: #6b7a80;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.register-heading strong {
+  color: #164047;
+  font-weight: 600;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* =========================
+   INPUT FIELDS
+========================= */
+
+.register-field {
+  position: relative;
+
+  min-height: 67px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 10px 18px;
+
+  border: 1px solid #d8e1e1;
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.register-field:focus-within {
+  border-color: #00988f;
+
+  box-shadow:
+    0 0 0 3px rgba(0, 152, 143, 0.09);
+
+  transform: translateY(-1px);
+}
+
+/* =========================
+   FIELD ICON
+========================= */
+
+.field-icon {
+  flex: 0 0 28px;
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.field-icon svg {
+  width: 22px;
+  height: 22px;
+
+  fill: #00988f;
+}
+
+/* =========================
+   FIELD CONTENT
+========================= */
+
+.field-content {
+  flex: 1;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.field-content label {
+  margin-bottom: 3px;
+
+  color: #14363e;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.field-content input,
+.field-content select {
+  width: 100%;
+
+  padding: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #263f46;
+
+  font-family: inherit;
+
+  font-size: 14px;
+}
+
+.field-content input::placeholder {
+  color: #a8b1b5;
+}
+
+.field-content select {
+  cursor: pointer;
+  color: #65767b;
+}
+
+/* =========================
+   REQUIRED STAR
+========================= */
+
+.required-star {
+  color: #e74c3c;
+  font-weight: 700;
+}
+
+/* =========================
+   FIELD ERROR
+========================= */
+
+.field-error {
+  color: #e74c3c !important;
+}
+
+.register-field:has(.field-error) {
+  border-color: #e74c3c !important;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.09) !important;
+}
+
+.field-error-message {
+  color: #e74c3c;
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+/* =========================
+   PASSWORD EYE
+========================= */
+
+.password-toggle {
+  flex: 0 0 34px;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 7px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.password-toggle:hover {
+  background: #edf9f8;
+}
+
+.password-toggle svg {
+  width: 20px;
+  height: 20px;
+
+  fill: #294951;
+}
+
+/* =========================
+   TERMS
+========================= */
+
+.terms-row {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 9px;
+
+  margin: 4px 0 2px;
+}
+
+.terms-row input {
+  width: 17px;
+  height: 17px;
+
+  margin-top: 1px;
+
+  accent-color: #008f86;
+
+  cursor: pointer;
+}
+
+.terms-row label {
+  color: #637278;
+
+  font-size: 12px;
+  line-height: 1.5;
+
+  cursor: pointer;
+}
+
+.terms-row span {
+  color: #008b82;
+  font-weight: 600;
+}
+
+/* =========================
+   CREATE ACCOUNT BUTTON
+========================= */
+
+.create-account-btn {
+  width: 100%;
+
+  min-height: 52px;
+
+  border: none;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    90deg,
+    #00877f 0%,
+    #00948a 100%
+  );
+
+  box-shadow:
+    0 8px 20px rgba(0, 137, 128, 0.16);
+
+  font-family: inherit;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.create-account-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 10px 24px rgba(0, 137, 128, 0.22);
+}
+
+.create-account-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.create-account-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.create-account-btn svg {
+  width: 20px;
+  height: 20px;
+
+  fill: #ffffff;
+}
+
+/* =========================
+   DIVIDER
+========================= */
+
+.register-divider {
+  width: 100%;
+
+  margin: 23px 0 19px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+}
+
+.register-divider span {
+  flex: 1;
+
+  height: 1px;
+
+  background: #e0e6e6;
+}
+
+.register-divider p {
+  margin: 0;
+
+  color: #748287;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================
+   SOCIAL BUTTONS
+========================= */
+
+.social-register {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+}
+
+.social-btn {
+  min-height: 52px;
+
+  padding: 11px 14px;
+
+  border: 1px solid #dce3e3;
+  border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  color: #19383f;
+
+  background: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.social-btn:hover {
+  border-color: #00988f;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 15px rgba(18, 77, 80, 0.07);
+}
+
+/* =========================
+   GOOGLE ICON
+========================= */
+
+.google-icon {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #4285f4;
+
+  font-size: 21px;
+  font-weight: 800;
+}
+
+/* =========================
+   APPLE ICON
+========================= */
+
+.apple-icon {
+  color: #000000;
+
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* =========================
+   LOGIN TEXT
+========================= */
+
+.login-text {
+  margin: 23px 0 0;
+
+  text-align: center;
+
+  color: #69797e;
+
+  font-size: 13px;
+}
+
+.login-text a {
+  color: #008b82;
+
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.login-text a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   BACKGROUND DECORATION
+========================= */
+
+.register-decoration {
+  position: absolute;
+
+  z-index: 1;
+
+  color: #c9efec;
+
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.decoration-one {
+  top: 12%;
+  left: 8%;
+}
+
+.decoration-two {
+  top: 6%;
+  right: 16%;
+}
+
+.decoration-three {
+  bottom: 20%;
+  right: 6%;
+}
+
+/* =========================
+   DOT PATTERN
+========================= */
+
+.register-dots {
+  position: absolute;
+
+  z-index: 1;
+
+  width: 70px;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 7px);
+
+  gap: 12px;
+}
+
+.register-dots span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #d5f3f0;
+}
+
+.dots-left {
+  left: 4%;
+  top: 48%;
+}
+
+.dots-right {
+  right: 4%;
+  top: 22%;
+}
+
+/* =========================
+   TABLET RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  .register-page {
+    padding: 35px 18px;
+  }
+
+  .register-card {
+    max-width: 540px;
+
+    padding: 32px 32px 30px;
+  }
+
+  .register-heading h1 {
+    font-size: 28px;
+  }
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 550px) {
+  .register-page {
+    padding: 25px 12px;
+  }
+
+  .register-card {
+    padding: 28px 18px 26px;
+
+    border-radius: 18px;
+  }
+
+  .register-logo {
+    width: 60px;
+    height: 60px;
+
+    margin-bottom: 13px;
+  }
+
+  .register-logo svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .register-heading {
+    margin-bottom: 22px;
+  }
+
+  .register-heading h1 {
+    font-size: 25px;
+  }
+
+  .register-heading p {
+    font-size: 13px;
+  }
+
+  .register-field {
+    min-height: 62px;
+
+    padding: 9px 14px;
+
+    gap: 12px;
+  }
+
+  .field-icon {
+    flex-basis: 25px;
+
+    width: 25px;
+  }
+
+  .field-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .field-content label {
+    font-size: 12px;
+  }
+
+  .field-content input,
+  .field-content select {
+    font-size: 13px;
+  }
+
+  .create-account-btn {
+    min-height: 49px;
+
+    font-size: 14px;
+  }
+
+  .social-register {
+    grid-template-columns: 1fr;
+  }
+
+  .social-btn {
+    min-height: 49px;
+  }
+
+  .register-decoration,
+  .register-dots {
+    display: none;
+  }
+}
